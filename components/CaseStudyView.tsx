@@ -25,11 +25,16 @@ export default function CaseStudyView({
   return (
     <main>
       {/* ── Hero ── */}
-      <header className="relative overflow-hidden bg-violet-950 px-5 pb-16 pt-36 md:px-8 md:pb-24 md:pt-44">
-        <div className="pointer-events-none absolute -left-32 top-[-30%] h-[55vh] w-[55vh] rounded-full bg-violet-600/30 blur-[140px]" />
-        <div className="pointer-events-none absolute bottom-[-30%] right-[-10%] h-[45vh] w-[45vh] rounded-full bg-lime-400/10 blur-[140px]" />
+      <header className="relative overflow-hidden border-b border-line bg-paper px-5 pb-16 pt-36 md:px-10 md:pb-20 md:pt-48">
+        <div
+          className="pointer-events-none absolute -right-40 -top-40 h-[60vh] w-[60vh] rounded-full opacity-70 blur-[110px]"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(206,179,255,0.55), rgba(255,255,255,0))",
+          }}
+        />
 
-        <div className="relative z-10 mx-auto max-w-7xl">
+        <div className="relative z-10 mx-auto max-w-[88rem]">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -37,7 +42,7 @@ export default function CaseStudyView({
           >
             <Link
               href="/case-studies"
-              className="group inline-flex items-center gap-2 text-xs font-medium text-violet-300/70 transition-colors hover:text-lime-400"
+              className="group inline-flex items-center gap-2 text-xs font-medium text-ink-faint transition-colors hover:text-violet-600"
             >
               <span className="transition-transform duration-300 group-hover:-translate-x-1">
                 ←
@@ -50,12 +55,12 @@ export default function CaseStudyView({
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1, ease }}
-            className="eyebrow mb-5 mt-10 text-lime-400"
+            className="eyebrow mb-5 mt-10"
           >
             {cs.industry}
           </motion.p>
 
-          <h1 className="display max-w-4xl text-4xl text-white md:text-7xl">
+          <h1 className="display max-w-5xl text-4xl text-ink md:text-7xl">
             <span className="line-mask">
               <motion.span
                 initial={{ y: "115%" }}
@@ -82,14 +87,14 @@ export default function CaseStudyView({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.55, ease }}
-            className="mt-12 flex flex-wrap items-center gap-x-10 gap-y-5 border-t border-line-dark pt-8"
+            className="mt-12 flex flex-wrap items-center gap-x-10 gap-y-5 border-t border-line pt-8"
           >
-            <p className="eyebrow text-violet-300/60">System stack</p>
+            <p className="eyebrow !text-ink-faint">System stack</p>
             <div className="flex flex-wrap items-center gap-3">
               {cs.stack.map((tool) => (
                 <span
                   key={tool.name}
-                  className="inline-flex items-center gap-2.5 rounded-full border border-line-dark bg-violet-900/50 px-4 py-2 text-xs font-semibold text-violet-100"
+                  className="inline-flex items-center gap-2.5 rounded-full border border-line bg-paper-soft px-4 py-2 text-xs font-semibold text-ink"
                 >
                   <Image
                     src={tool.logo}
@@ -108,14 +113,14 @@ export default function CaseStudyView({
       </header>
 
       {/* ── Challenge ── */}
-      <section className="bg-paper px-5 py-20 md:px-8 md:py-28">
-        <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-[1fr_2fr]">
-          <motion.p {...fadeUp} className="eyebrow text-violet-600">
+      <section className="bg-paper px-5 py-20 md:px-10 md:py-28">
+        <div className="mx-auto grid max-w-[88rem] gap-10 md:grid-cols-[1fr_2.5fr]">
+          <motion.p {...fadeUp} className="eyebrow">
             01 — The challenge
           </motion.p>
           <motion.p
             {...fadeUp}
-            className="display text-2xl leading-snug text-ink-900 md:text-4xl md:leading-[1.2]"
+            className="display max-w-4xl text-2xl leading-snug text-ink md:text-4xl md:leading-[1.2]"
           >
             {cs.challenge}
           </motion.p>
@@ -123,9 +128,9 @@ export default function CaseStudyView({
       </section>
 
       {/* ── The system ── */}
-      <section className="bg-violet-50 px-5 py-20 md:px-8 md:py-28">
-        <div className="mx-auto max-w-7xl">
-          <motion.p {...fadeUp} className="eyebrow mb-12 text-violet-600">
+      <section className="border-y border-line bg-paper-soft px-5 py-20 md:px-10 md:py-28">
+        <div className="mx-auto max-w-[88rem]">
+          <motion.p {...fadeUp} className="eyebrow mb-12">
             02 — The system we engineered
           </motion.p>
           <div className="grid gap-5 md:grid-cols-2">
@@ -136,12 +141,12 @@ export default function CaseStudyView({
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.7, delay: (i % 2) * 0.12, ease }}
-                className="rounded-3xl border border-violet-300/40 bg-paper p-8 transition-shadow duration-500 hover:shadow-[0_24px_60px_-30px_rgba(60,19,178,0.35)]"
+                className="rounded-3xl border border-line bg-paper p-8 transition-shadow duration-500 hover:shadow-[0_30px_70px_-40px_rgba(60,19,178,0.35)]"
               >
-                <span className="font-mono text-sm font-bold text-violet-600">
+                <span className="outline-num text-4xl">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <p className="mt-4 text-[15px] leading-relaxed text-ink-700">{step}</p>
+                <p className="mt-4 text-[15px] leading-relaxed text-ink-soft">{step}</p>
               </motion.div>
             ))}
           </div>
@@ -149,12 +154,12 @@ export default function CaseStudyView({
       </section>
 
       {/* ── Results ── */}
-      <section className="bg-violet-950 px-5 py-20 md:px-8 md:py-28">
-        <div className="mx-auto max-w-7xl">
-          <motion.p {...fadeUp} className="eyebrow mb-12 text-lime-400">
+      <section className="bg-paper px-5 py-20 md:px-10 md:py-28">
+        <div className="mx-auto max-w-[88rem]">
+          <motion.p {...fadeUp} className="eyebrow mb-12">
             03 — The results
           </motion.p>
-          <div className="grid gap-px overflow-hidden rounded-3xl border border-line-dark bg-line-dark md:grid-cols-3">
+          <div className="grid gap-px overflow-hidden rounded-3xl border border-line bg-line md:grid-cols-3">
             {cs.results.map((r, i) => (
               <motion.div
                 key={r.label}
@@ -162,20 +167,20 @@ export default function CaseStudyView({
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.7, delay: i * 0.12, ease }}
-                className="bg-violet-950 px-8 py-10"
+                className="bg-paper px-8 py-10"
               >
-                <p className="display text-5xl text-lime-400 md:text-6xl">{r.value}</p>
-                <p className="mt-2 text-sm font-medium text-violet-100/75">{r.label}</p>
+                <p className="display text-5xl text-violet-600 md:text-6xl">{r.value}</p>
+                <p className="mt-2 text-sm font-medium text-ink-soft">{r.label}</p>
               </motion.div>
             ))}
           </div>
 
           {cs.quote && (
             <motion.figure {...fadeUp} className="mx-auto mt-20 max-w-3xl text-center">
-              <blockquote className="display text-2xl leading-snug text-white md:text-3xl">
+              <blockquote className="display text-2xl leading-snug text-ink md:text-3xl">
                 &ldquo;{cs.quote.text}&rdquo;
               </blockquote>
-              <figcaption className="mt-6 text-sm font-medium text-violet-300/80">
+              <figcaption className="mt-6 text-sm font-medium text-violet-600">
                 — {cs.quote.author}
               </figcaption>
             </motion.figure>
@@ -184,11 +189,11 @@ export default function CaseStudyView({
       </section>
 
       {/* ── Next case + CTA ── */}
-      <section className="border-t border-line-dark bg-violet-950 px-5 py-16 md:px-8 md:py-20">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-10 md:flex-row">
+      <section className="border-t border-line bg-lavender px-5 py-16 md:px-10 md:py-20">
+        <div className="mx-auto flex max-w-[88rem] flex-col items-center justify-between gap-10 md:flex-row">
           <Link href={`/case-studies/${next.slug}`} className="group" data-cursor>
-            <p className="eyebrow mb-3 text-violet-300/60">Next case study</p>
-            <p className="display text-3xl text-white transition-colors duration-300 group-hover:text-lime-400 md:text-4xl">
+            <p className="eyebrow mb-3 !text-ink-faint">Next case study</p>
+            <p className="display text-3xl text-ink transition-colors duration-300 group-hover:text-violet-600 md:text-4xl">
               {next.client}{" "}
               <span className="inline-block transition-transform duration-300 group-hover:translate-x-2">
                 →
@@ -200,7 +205,7 @@ export default function CaseStudyView({
               href={CALENDLY_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full bg-lime-400 px-8 py-4 text-sm font-semibold text-violet-950 transition-transform duration-300 hover:scale-105"
+              className="inline-flex items-center gap-2 rounded-full bg-violet-600 px-8 py-4 text-sm font-semibold text-white transition-colors duration-300 hover:bg-violet-700"
             >
               Build yours — Book a Call <span aria-hidden>↗</span>
             </a>

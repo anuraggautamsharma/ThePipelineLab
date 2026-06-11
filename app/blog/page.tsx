@@ -14,7 +14,7 @@ export default function BlogPage() {
   const [featured, ...rest] = posts;
 
   return (
-    <main className="bg-violet-950">
+    <main className="bg-paper-soft">
       <PageHeader
         eyebrow="The lab notes"
         titleTop="Field notes,"
@@ -22,8 +22,8 @@ export default function BlogPage() {
         sub="Everything we learn building revenue systems — deliverability, data pipelines, Clay workflows and the strategy behind outbound that compounds."
       />
 
-      <section className="px-5 pb-28 md:px-8 md:pb-36">
-        <div className="mx-auto max-w-7xl space-y-5">
+      <section className="px-5 py-20 md:px-10 md:py-28">
+        <div className="mx-auto max-w-[88rem] space-y-5">
           {featured && <FeaturedCard post={featured} />}
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {rest.map((post, i) => (

@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 
-/** Dark violet page hero shared by interior pages. */
+/** Light editorial page hero shared by interior pages. */
 export default function PageHeader({
   eyebrow,
   titleTop,
@@ -15,20 +15,25 @@ export default function PageHeader({
   sub?: string;
 }) {
   return (
-    <header className="relative overflow-hidden px-5 pb-16 pt-36 md:px-8 md:pb-24 md:pt-44">
-      <div className="pointer-events-none absolute -left-32 top-[-30%] h-[55vh] w-[55vh] rounded-full bg-violet-600/30 blur-[140px]" />
-      <div className="pointer-events-none absolute right-[-10%] top-[20%] h-[40vh] w-[40vh] rounded-full bg-lime-400/10 blur-[140px]" />
+    <header className="relative overflow-hidden border-b border-line bg-paper px-5 pb-16 pt-36 md:px-10 md:pb-24 md:pt-48">
+      <div
+        className="pointer-events-none absolute -right-40 -top-40 h-[60vh] w-[60vh] rounded-full opacity-70 blur-[110px]"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(206,179,255,0.55), rgba(255,255,255,0))",
+        }}
+      />
 
-      <div className="relative z-10 mx-auto max-w-7xl">
+      <div className="relative z-10 mx-auto max-w-[88rem]">
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="eyebrow mb-6 text-lime-400"
+          className="eyebrow mb-6"
         >
           {eyebrow}
         </motion.p>
-        <h1 className="display text-5xl text-white md:text-8xl">
+        <h1 className="display text-5xl text-ink md:text-8xl">
           <span className="line-mask">
             <motion.span
               initial={{ y: "115%" }}
@@ -53,7 +58,7 @@ export default function PageHeader({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-8 max-w-xl text-[15px] leading-relaxed text-violet-100/70"
+            className="mt-8 max-w-xl text-[15px] leading-relaxed text-ink-soft"
           >
             {sub}
           </motion.p>

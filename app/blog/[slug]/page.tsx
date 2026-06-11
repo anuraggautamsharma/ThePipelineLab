@@ -65,14 +65,19 @@ export default async function BlogPostPage({
       />
 
       {/* ── Hero ── */}
-      <header className="relative overflow-hidden bg-violet-950 px-5 pb-16 pt-36 md:px-8 md:pb-20 md:pt-44">
-        <div className="pointer-events-none absolute -left-32 top-[-30%] h-[55vh] w-[55vh] rounded-full bg-violet-600/30 blur-[140px]" />
-        <div className="pointer-events-none absolute right-[-10%] top-[30%] h-[40vh] w-[40vh] rounded-full bg-lime-400/10 blur-[140px]" />
+      <header className="relative overflow-hidden border-b border-line bg-paper px-5 pb-14 pt-36 md:px-10 md:pb-18 md:pt-48">
+        <div
+          className="pointer-events-none absolute -right-40 -top-40 h-[55vh] w-[55vh] rounded-full opacity-70 blur-[110px]"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(206,179,255,0.5), rgba(255,255,255,0))",
+          }}
+        />
 
         <div className="relative z-10 mx-auto max-w-3xl">
           <Link
             href="/blog"
-            className="group inline-flex items-center gap-2 text-xs font-medium text-violet-300/70 transition-colors hover:text-lime-400"
+            className="group inline-flex items-center gap-2 text-xs font-medium text-ink-faint transition-colors hover:text-violet-600"
           >
             <span className="transition-transform duration-300 group-hover:-translate-x-1">
               ←
@@ -84,40 +89,38 @@ export default async function BlogPostPage({
             {post.tags.map((t) => (
               <span
                 key={t}
-                className="rounded-full border border-line-dark px-3 py-1 text-[11px] font-semibold text-lime-400"
+                className="rounded-full border border-line px-3 py-1 text-[11px] font-semibold text-violet-600"
               >
                 {t}
               </span>
             ))}
           </div>
 
-          <h1 className="display mt-6 text-4xl text-white md:text-6xl">
-            {post.title}
-          </h1>
+          <h1 className="display mt-6 text-4xl text-ink md:text-6xl">{post.title}</h1>
 
-          <div className="mt-8 flex flex-wrap items-center gap-3 text-xs font-medium text-violet-300/70">
+          <div className="mt-8 flex flex-wrap items-center gap-3 text-xs font-medium text-ink-faint">
             <span>{post.author}</span>
-            <span className="h-1 w-1 rounded-full bg-violet-300/40" />
+            <span className="h-1 w-1 rounded-full bg-violet-300" />
             <span>{formatDate(post.date)}</span>
-            <span className="h-1 w-1 rounded-full bg-violet-300/40" />
+            <span className="h-1 w-1 rounded-full bg-violet-300" />
             <span>{post.readingTime} min read</span>
           </div>
         </div>
       </header>
 
       {/* ── Article ── */}
-      <article className="bg-paper px-5 py-16 md:px-8 md:py-24">
+      <article className="bg-paper px-5 py-16 md:px-10 md:py-24">
         <div className="prose prose-tpl mx-auto max-w-3xl">
           <ReactMarkdown remarkPlugins={[remarkGfm]}>{post.content}</ReactMarkdown>
         </div>
 
         {/* inline CTA */}
-        <aside className="mx-auto mt-16 max-w-3xl rounded-3xl bg-violet-950 p-8 md:p-10">
-          <p className="eyebrow mb-3 text-lime-400">Put this to work</p>
+        <aside className="mx-auto mt-16 max-w-3xl rounded-3xl bg-violet-600 p-8 md:p-10">
+          <p className="eyebrow mb-3 !text-lime-400">Put this to work</p>
           <p className="display text-2xl text-white md:text-3xl">
             Want this engineered for you instead?
           </p>
-          <p className="mt-3 max-w-lg text-sm leading-relaxed text-violet-100/65">
+          <p className="mt-3 max-w-lg text-sm leading-relaxed text-white/75">
             We build these systems end-to-end — data, deliverability,
             multichannel orchestration. 30 minutes, and you&rsquo;ll leave with a
             blueprint either way.
@@ -126,7 +129,7 @@ export default async function BlogPostPage({
             href={CALENDLY_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-7 inline-flex items-center gap-2 rounded-full bg-lime-400 px-7 py-3.5 text-sm font-semibold text-violet-950 transition-transform duration-300 hover:scale-[1.04]"
+            className="mt-7 inline-flex items-center gap-2 rounded-full bg-lime-400 px-7 py-3.5 text-sm font-semibold text-ink transition-transform duration-300 hover:scale-[1.04]"
           >
             Book a Strategy Call <span aria-hidden>↗</span>
           </a>
@@ -134,15 +137,15 @@ export default async function BlogPostPage({
       </article>
 
       {/* ── Next post ── */}
-      <section className="border-t border-line-dark bg-violet-950 px-5 py-14 md:px-8 md:py-16">
+      <section className="border-t border-line bg-paper-soft px-5 py-14 md:px-10 md:py-16">
         <div className="mx-auto flex max-w-3xl items-center justify-between gap-8">
           <Link href={`/blog/${next.slug}`} className="group min-w-0" data-cursor>
-            <p className="eyebrow mb-3 text-violet-300/60">Read next</p>
-            <p className="display truncate text-xl text-white transition-colors duration-300 group-hover:text-lime-400 md:text-3xl">
+            <p className="eyebrow mb-3 !text-ink-faint">Read next</p>
+            <p className="display truncate text-xl text-ink transition-colors duration-300 group-hover:text-violet-600 md:text-3xl">
               {next.title}
             </p>
           </Link>
-          <span className="shrink-0 text-2xl text-lime-400" aria-hidden>
+          <span className="shrink-0 text-2xl text-violet-600" aria-hidden>
             →
           </span>
         </div>

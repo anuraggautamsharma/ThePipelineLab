@@ -24,31 +24,31 @@ export default function Nav() {
     <motion.header
       animate={{ y: hidden ? "-110%" : 0 }}
       transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-      className={`fixed inset-x-0 top-0 z-[100] transition-colors duration-500 ${
+      className={`fixed inset-x-0 top-0 z-[100] transition-all duration-500 ${
         scrolled || open
-          ? "bg-violet-950/85 backdrop-blur-xl border-b border-line-dark"
+          ? "bg-paper/85 backdrop-blur-xl border-b border-line"
           : "bg-transparent"
       }`}
     >
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 md:px-8">
-        <Link href="/" className="flex items-center gap-2 text-white">
-          <span className="grid h-8 w-8 place-items-center rounded-lg bg-lime-400 font-mono text-sm font-bold text-violet-950">
+      <nav className="mx-auto flex max-w-[88rem] items-center justify-between px-5 py-4 md:px-10">
+        <Link href="/" className="flex items-center gap-2.5 text-ink">
+          <span className="grid h-8 w-8 place-items-center rounded-lg bg-violet-600 font-mono text-sm font-bold text-lime-400">
             P
           </span>
-          <span className="text-sm font-semibold tracking-tight">
-            The Pipeline Lab<span className="text-lime-400">.</span>
+          <span className="text-[15px] font-semibold tracking-tight">
+            The Pipeline Lab<span className="text-violet-600">.</span>
           </span>
         </Link>
 
-        <ul className="hidden items-center gap-7 md:flex">
+        <ul className="hidden items-center gap-8 md:flex">
           {NAV_LINKS.map((l) => (
             <li key={l.href}>
               <Link
                 href={l.href}
-                className="group relative text-[13px] font-medium text-violet-100/80 transition-colors hover:text-white"
+                className="group relative text-[13px] font-medium text-ink-soft transition-colors hover:text-ink"
               >
                 {l.label}
-                <span className="absolute -bottom-1 left-0 h-px w-0 bg-lime-400 transition-all duration-300 group-hover:w-full" />
+                <span className="absolute -bottom-1 left-0 h-[2px] w-0 bg-lime-400 transition-all duration-300 group-hover:w-full" />
               </Link>
             </li>
           ))}
@@ -60,7 +60,7 @@ export default function Nav() {
               href={CALENDLY_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full bg-lime-400 px-5 py-2.5 text-[13px] font-semibold text-violet-950 transition-transform duration-300 hover:scale-[1.04]"
+              className="inline-flex items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-[13px] font-semibold text-paper transition-colors duration-300 hover:bg-violet-600"
             >
               Book a Strategy Call
               <span aria-hidden>↗</span>
@@ -75,11 +75,11 @@ export default function Nav() {
         >
           <motion.span
             animate={{ rotate: open ? 45 : 0, y: open ? 4 : 0 }}
-            className="h-px w-6 bg-white"
+            className="h-px w-6 bg-ink"
           />
           <motion.span
             animate={{ rotate: open ? -45 : 0, y: open ? -4 : 0 }}
-            className="h-px w-6 bg-white"
+            className="h-px w-6 bg-ink"
           />
         </button>
       </nav>
@@ -91,26 +91,29 @@ export default function Nav() {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="overflow-hidden border-t border-line-dark bg-violet-950/95 backdrop-blur-xl md:hidden"
+            className="overflow-hidden border-t border-line bg-paper/95 backdrop-blur-xl md:hidden"
           >
             <ul className="flex flex-col gap-1 px-5 py-6">
-              {NAV_LINKS.map((l) => (
+              {NAV_LINKS.map((l, i) => (
                 <li key={l.href}>
                   <Link
                     href={l.href}
                     onClick={() => setOpen(false)}
-                    className="block py-2 text-lg font-medium text-violet-100"
+                    className="flex items-baseline gap-4 py-2.5 text-xl font-medium text-ink"
                   >
+                    <span className="font-mono text-[11px] text-violet-600">
+                      0{i + 1}
+                    </span>
                     {l.label}
                   </Link>
                 </li>
               ))}
-              <li className="pt-3">
+              <li className="pt-4">
                 <a
                   href={CALENDLY_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full bg-lime-400 px-5 py-3 text-sm font-semibold text-violet-950"
+                  className="inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3.5 text-sm font-semibold text-paper"
                 >
                   Book a Strategy Call <span aria-hidden>↗</span>
                 </a>

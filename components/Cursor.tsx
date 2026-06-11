@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 
-/** Lime dot + trailing ring cursor. Grows over interactive elements. */
+/** Ink dot + violet trailing ring. Grows over interactive elements. */
 export default function Cursor() {
   const [enabled, setEnabled] = useState(false);
   const [hovering, setHovering] = useState(false);
@@ -34,13 +34,17 @@ export default function Cursor() {
   return (
     <>
       <motion.div
-        className="pointer-events-none fixed left-0 top-0 z-[200] h-2 w-2 rounded-full bg-lime-400 mix-blend-difference"
+        className="pointer-events-none fixed left-0 top-0 z-[200] h-1.5 w-1.5 rounded-full bg-ink"
         style={{ x, y, translateX: "-50%", translateY: "-50%" }}
       />
       <motion.div
-        className="pointer-events-none fixed left-0 top-0 z-[200] rounded-full border border-lime-400/70 mix-blend-difference"
+        className="pointer-events-none fixed left-0 top-0 z-[200] rounded-full border border-violet-600/50"
         style={{ x: ringX, y: ringY, translateX: "-50%", translateY: "-50%" }}
-        animate={{ width: hovering ? 52 : 28, height: hovering ? 52 : 28 }}
+        animate={{
+          width: hovering ? 44 : 26,
+          height: hovering ? 44 : 26,
+          backgroundColor: hovering ? "rgba(201,252,54,0.25)" : "rgba(201,252,54,0)",
+        }}
         transition={{ type: "spring", stiffness: 300, damping: 22 }}
       />
     </>

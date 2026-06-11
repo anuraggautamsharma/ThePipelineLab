@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function GetInTouchPage() {
   return (
-    <main className="bg-violet-950">
+    <main className="bg-paper-soft">
       <PageHeader
         eyebrow="Get in touch"
         titleTop="Let's map"

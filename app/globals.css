@@ -2,28 +2,24 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-  /* ── The Pipeline Lab design system: deep violet + lavender + lime ── */
-  --color-violet-950: #0e0518;
-  --color-violet-900: #1b0a44;
-  --color-violet-800: #2a0d80;
-  --color-violet-600: #3c13b2;
-  --color-violet-500: #5527d6;
-  --color-violet-300: #ceb3ff;
-  --color-violet-100: #e9ddff;
-  --color-violet-50: #f4eeff;
-
-  --color-lime-400: #c9fc36;
-  --color-lime-500: #b2e62b;
-  --color-amber-400: #fbbf24;
-
-  --color-ink-900: #14101d;
-  --color-ink-700: #4f4a5c;
-  --color-ink-500: #7a7a7a;
-
+  /* ── Studio Light: white canvas, ink type, violet accent ── */
   --color-paper: #ffffff;
-  --color-paper-soft: #f8f5ff;
-  --color-line: #e6def6;
-  --color-line-dark: rgba(206, 179, 255, 0.18);
+  --color-paper-soft: #f8f6fe;
+  --color-lavender: #f4eeff;
+  --color-lavender-deep: #e9dfff;
+
+  --color-ink: #16121f;
+  --color-ink-soft: #585265;
+  --color-ink-faint: #8d8798;
+
+  --color-violet-600: #3c13b2;
+  --color-violet-700: #2a0d80;
+  --color-violet-300: #ceb3ff;
+  --color-lime-400: #c9fc36;
+  --color-lime-600: #93c11a;
+
+  --color-line: #e9e4f4;
+  --color-line-strong: #d9d2ea;
 
   --font-sans: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
@@ -50,7 +46,7 @@ html.lenis body {
 
 body {
   background: var(--color-paper);
-  color: var(--color-ink-900);
+  color: var(--color-ink);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   overflow-x: clip;
@@ -58,41 +54,67 @@ body {
 
 ::selection {
   background: var(--color-lime-400);
-  color: var(--color-violet-900);
+  color: var(--color-ink);
 }
 
-/* Editorial display style */
+/* ── Editorial display type ── */
 .display {
   font-weight: 500;
-  letter-spacing: -0.04em;
-  line-height: 1.04;
+  letter-spacing: -0.045em;
+  line-height: 1.02;
 }
 
 .display .accent {
-  color: var(--color-lime-400);
-  font-style: italic;
-  font-weight: 400;
-}
-
-.display .accent-violet {
   color: var(--color-violet-600);
   font-style: italic;
   font-weight: 400;
 }
 
-.eyebrow {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
+/* lime marker highlight, drawn under a key word */
+.marker {
+  position: relative;
+  white-space: nowrap;
 }
 
-/* Line-mask reveal used by hero / section headings */
+.marker > .marker-ink {
+  position: relative;
+  z-index: 1;
+}
+
+.marker > .marker-swash {
+  position: absolute;
+  left: -0.06em;
+  right: -0.06em;
+  bottom: 0.04em;
+  height: 0.34em;
+  background: var(--color-lime-400);
+  transform-origin: left center;
+  z-index: 0;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--color-violet-600);
+}
+
+/* huge outlined index numerals */
+.outline-num {
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--color-violet-300);
+}
+
+/* line-mask reveal */
 .line-mask {
   display: block;
   overflow: hidden;
-  padding-bottom: 0.1em;
-  margin-bottom: -0.1em;
+  padding-bottom: 0.12em;
+  margin-bottom: -0.12em;
 }
 
 .line-mask > span {
@@ -100,7 +122,12 @@ body {
   will-change: transform;
 }
 
-/* Marquee */
+/* hairline rules */
+.rule {
+  border-top: 1px solid var(--color-line);
+}
+
+/* ── Marquee ── */
 @keyframes marquee {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
@@ -122,21 +149,21 @@ body {
   }
 }
 
-/* Blog article typography on the brand system */
+/* ── Blog article typography ── */
 .prose-tpl {
-  --tw-prose-body: var(--color-ink-700);
-  --tw-prose-headings: var(--color-ink-900);
+  --tw-prose-body: var(--color-ink-soft);
+  --tw-prose-headings: var(--color-ink);
   --tw-prose-links: var(--color-violet-600);
-  --tw-prose-bold: var(--color-ink-900);
-  --tw-prose-quotes: var(--color-violet-800);
+  --tw-prose-bold: var(--color-ink);
+  --tw-prose-quotes: var(--color-violet-700);
   --tw-prose-quote-borders: var(--color-lime-400);
   --tw-prose-counters: var(--color-violet-600);
   --tw-prose-bullets: var(--color-violet-300);
   --tw-prose-hr: var(--color-line);
-  --tw-prose-code: var(--color-violet-800);
-  --tw-prose-pre-bg: var(--color-violet-950);
-  --tw-prose-pre-code: var(--color-violet-100);
-  --tw-prose-th-borders: var(--color-line);
+  --tw-prose-code: var(--color-violet-700);
+  --tw-prose-pre-bg: var(--color-ink);
+  --tw-prose-pre-code: var(--color-lavender);
+  --tw-prose-th-borders: var(--color-line-strong);
   --tw-prose-td-borders: var(--color-line);
   font-size: 1.0625rem;
   line-height: 1.8;
@@ -156,18 +183,18 @@ body {
 }
 
 .prose-tpl a:hover {
-  text-decoration-color: var(--color-lime-500);
+  text-decoration-color: var(--color-lime-600);
 }
 
 .prose-tpl blockquote {
   font-style: normal;
-  background: var(--color-violet-50);
+  background: var(--color-lavender);
   border-radius: 0 1rem 1rem 0;
   padding: 1rem 1.5rem;
 }
 
 .prose-tpl code:not(pre code) {
-  background: var(--color-violet-50);
+  background: var(--color-lavender);
   border-radius: 0.35rem;
   padding: 0.15rem 0.4rem;
   font-weight: 500;
@@ -186,12 +213,12 @@ body {
   font-size: 0.9rem;
 }
 
-/* Thin violet scrollbar */
+/* thin scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--color-violet-50);
+  background: var(--color-paper-soft);
 }
 ::-webkit-scrollbar-thumb {
   background: var(--color-violet-300);

@@ -5,32 +5,41 @@ import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 
 /**
- * The hero visual: scattered data streams on the left converge into one
- * tight glowing pipeline on the right — chaos in, booked meetings out.
+ * Airy light-theme particle field: scattered streams converge into one
+ * pipeline flowing right — drawn in violet/lavender on white.
  */
 
-const CURVE_COUNT = 16;
-const SAMPLES = 240;
-const PARTICLES = 2600;
+const CURVE_COUNT = 14;
+const SAMPLES = 220;
+const PARTICLES = 1800;
 
-function buildCurves(seedFn: () => number) {
+function mulberry32(a: number) {
+  return () => {
+    a |= 0;
+    a = (a + 0x6d2b79f5) | 0;
+    let t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+function buildCurves(rand: () => number) {
   const curves: Float32Array[] = [];
   for (let c = 0; c < CURVE_COUNT; c++) {
-    const yStart = (seedFn() - 0.5) * 7.5;
-    const zStart = (seedFn() - 0.5) * 4.5;
-    const yEnd = (seedFn() - 0.5) * 0.55;
-    const zEnd = (seedFn() - 0.5) * 0.4;
+    const yStart = (rand() - 0.5) * 6.5;
+    const zStart = (rand() - 0.5) * 3.5;
+    const yEnd = (rand() - 0.5) * 0.5;
     const pts: THREE.Vector3[] = [];
     for (let i = 0; i <= 5; i++) {
       const t = i / 5;
       const x = -10 + 20 * t;
       const converge = t * t * (3 - 2 * t);
-      const wobble = Math.sin(t * Math.PI * (1.5 + seedFn())) * (1 - converge) * 1.6;
+      const wobble = Math.sin(t * Math.PI * (1.5 + rand())) * (1 - converge) * 1.4;
       pts.push(
         new THREE.Vector3(
           x,
           THREE.MathUtils.lerp(yStart, yEnd, converge) + wobble,
-          THREE.MathUtils.lerp(zStart, zEnd, converge)
+          THREE.MathUtils.lerp(zStart, 0, converge)
         )
       );
     }
@@ -45,17 +54,6 @@ function buildCurves(seedFn: () => number) {
     curves.push(sampled);
   }
   return curves;
-}
-
-/** Deterministic PRNG so server/client and re-renders agree. */
-function mulberry32(a: number) {
-  return () => {
-    a |= 0;
-    a = (a + 0x6d2b79f5) | 0;
-    let t = Math.imul(a ^ (a >>> 15), 1 | a);
-    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
-    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-  };
 }
 
 function sampleCurve(curve: Float32Array, t: number, out: THREE.Vector3) {
@@ -81,7 +79,7 @@ const vertexShader = /* glsl */ `
     vProgress = progress;
     vTint = tint;
     vec4 mv = modelViewMatrix * vec4(position, 1.0);
-    gl_PointSize = size * (180.0 / -mv.z);
+    gl_PointSize = size * (170.0 / -mv.z);
     gl_Position = projectionMatrix * mv;
   }
 `;
@@ -92,27 +90,22 @@ const fragmentShader = /* glsl */ `
   void main() {
     vec2 uv = gl_PointCoord - 0.5;
     float d = length(uv);
-    float alpha = smoothstep(0.5, 0.05, d);
-    // fade in/out at the loop seam
+    float alpha = smoothstep(0.5, 0.12, d);
     alpha *= smoothstep(0.0, 0.08, vProgress) * smoothstep(1.0, 0.92, vProgress);
+    vec3 violet   = vec3(0.235, 0.075, 0.698); // #3C13B2
     vec3 lavender = vec3(0.808, 0.702, 1.0);   // #CEB3FF
-    vec3 violet   = vec3(0.36, 0.22, 0.95);
-    vec3 lime     = vec3(0.788, 0.988, 0.212); // #C9FC36
     vec3 base = mix(violet, lavender, vTint);
-    // streams ignite lime as they converge into the pipeline
-    vec3 color = mix(base, lime, smoothstep(0.72, 0.97, vProgress));
-    gl_FragColor = vec4(color, alpha * 0.9);
+    gl_FragColor = vec4(base, alpha * 0.55);
   }
 `;
 
 function ParticleField() {
-  const points = useRef<THREE.Points>(null!);
   const group = useRef<THREE.Group>(null!);
   const { pointer } = useThree();
   const tmp = useMemo(() => new THREE.Vector3(), []);
 
   const { curves, offsets, speeds, curveIdx, geometry } = useMemo(() => {
-    const rand = mulberry32(42);
+    const rand = mulberry32(7);
     const curves = buildCurves(rand);
     const offsets = new Float32Array(PARTICLES);
     const speeds = new Float32Array(PARTICLES);
@@ -121,9 +114,9 @@ function ParticleField() {
     const tints = new Float32Array(PARTICLES);
     for (let i = 0; i < PARTICLES; i++) {
       offsets[i] = rand();
-      speeds[i] = 0.025 + rand() * 0.06;
+      speeds[i] = 0.02 + rand() * 0.05;
       curveIdx[i] = Math.floor(rand() * CURVE_COUNT);
-      sizes[i] = 0.35 + rand() * 1.15;
+      sizes[i] = 0.3 + rand() * 1.0;
       tints[i] = rand();
     }
     const geometry = new THREE.BufferGeometry();
@@ -147,10 +140,9 @@ function ParticleField() {
     pos.needsUpdate = true;
     prog.needsUpdate = true;
 
-    // gentle mouse parallax
     if (group.current) {
-      group.current.rotation.y += (pointer.x * 0.16 - group.current.rotation.y) * Math.min(1, delta * 3);
-      group.current.rotation.x += (-pointer.y * 0.1 - group.current.rotation.x) * Math.min(1, delta * 3);
+      group.current.rotation.y += (pointer.x * 0.1 - group.current.rotation.y) * Math.min(1, delta * 3);
+      group.current.rotation.x += (-pointer.y * 0.06 - group.current.rotation.x) * Math.min(1, delta * 3);
     }
   });
 
@@ -169,28 +161,18 @@ function ParticleField() {
       {lines.map((g, i) => (
         <line key={i}>
           <primitive object={g} attach="geometry" />
-          <lineBasicMaterial color="#5527d6" transparent opacity={0.14} />
+          <lineBasicMaterial color="#ceb3ff" transparent opacity={0.22} />
         </line>
       ))}
-      <points ref={points}>
+      <points>
         <primitive object={geometry} attach="geometry" />
         <shaderMaterial
           vertexShader={vertexShader}
           fragmentShader={fragmentShader}
           transparent
           depthWrite={false}
-          blending={THREE.AdditiveBlending}
         />
       </points>
-      {/* destination node: the "booked meeting" */}
-      <mesh position={[9.2, 0, 0]}>
-        <sphereGeometry args={[0.16, 24, 24]} />
-        <meshBasicMaterial color="#c9fc36" />
-      </mesh>
-      <mesh position={[9.2, 0, 0]}>
-        <sphereGeometry args={[0.5, 24, 24]} />
-        <meshBasicMaterial color="#c9fc36" transparent opacity={0.12} />
-      </mesh>
     </group>
   );
 }

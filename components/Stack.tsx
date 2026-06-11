@@ -3,17 +3,21 @@ import { STACK_ROWS } from "@/lib/data";
 
 export default function Stack() {
   return (
-    <section id="stack" className="border-b border-line bg-paper py-24 md:py-32">
-      <div className="mx-auto mb-14 max-w-7xl px-5 md:px-8">
-        <p className="eyebrow mb-4 text-violet-600">The arsenal</p>
-        <h2 className="display max-w-3xl text-4xl md:text-6xl">
-          Built on the stack of the{" "}
-          <span className="accent-violet whitespace-nowrap">top 1%</span>
-        </h2>
-        <p className="mt-6 max-w-md text-sm leading-relaxed text-ink-700">
-          We operate the same tooling the best GTM teams in the world run on —
-          and we wire it together so you don&rsquo;t have to.
-        </p>
+    <section id="stack" className="bg-paper py-24 md:py-32">
+      <div className="mx-auto mb-14 max-w-[88rem] px-5 md:px-10">
+        <div className="grid gap-8 md:grid-cols-[1fr_3fr]">
+          <p className="eyebrow">05 — The arsenal</p>
+          <div>
+            <h2 className="display max-w-3xl text-4xl text-ink md:text-6xl">
+              Built on the stack of the{" "}
+              <span className="accent whitespace-nowrap">top 1%</span>
+            </h2>
+            <p className="mt-6 max-w-md text-sm leading-relaxed text-ink-soft">
+              We operate the same tooling the best GTM teams in the world run
+              on — and we wire it together so you don&rsquo;t have to.
+            </p>
+          </div>
+        </div>
       </div>
 
       <div
@@ -32,7 +36,7 @@ export default function Stack() {
             {[...row, ...row].map((tool, i) => (
               <span
                 key={i}
-                className="mx-3 inline-flex items-center gap-3 whitespace-nowrap rounded-full border border-line bg-violet-50 px-6 py-3.5 text-sm font-semibold text-violet-600 transition-colors hover:border-violet-300"
+                className="mx-3 inline-flex items-center gap-3 whitespace-nowrap rounded-full border border-line bg-paper px-6 py-3.5 text-sm font-semibold text-ink transition-colors hover:border-violet-300"
               >
                 <Image
                   src={tool.logo}
