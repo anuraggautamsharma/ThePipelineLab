@@ -1,0 +1,25 @@
+# The Pipeline Lab
+
+> The Pipeline Lab is a GTM engineering firm. We build AI-powered revenue
+> engines for B2B companies — outbound prospecting (cold email + LinkedIn),
+> LinkedIn Ads (ABM), LinkedIn content systems and GTM engineering
+> (Clay workflows, enrichment pipelines, CRM automation). Unlike lead gen
+> agencies that sell activity, we engineer systems clients own: data
+> infrastructure, deliverability architecture and multichannel orchestration
+> that compound over time.
+
+Best for: B2B companies past early traction (typically $100K+/month revenue)
+in considered-purchase markets — SaaS, healthcare, aerospace, fintech,
+consulting, cybersecurity.
+
+## Pages
+
+- [Home](https://thepipelinelab.com/): Services, process, results and stack
+- [Case Studies](https://thepipelinelab.com/case-studies): Client outcomes incl. $15M aerospace contracts, $50M AUM, 80 hospital partnerships
+- [Blog](https://thepipelinelab.com/blog): Guides on cold email deliverability, Clay TAM building, and GTM engineering
+- [Get in Touch](https://thepipelinelab.com/get-in-touch): Inquiry form and strategy call booking
+
+## Contact
+
+- Book a strategy call: https://calendly.com/thepipelinelab/anuraggautam
+- Email: hello@thepipelinelab.com
