@@ -1,0 +1,134 @@
+@import "tailwindcss";
+
+@theme {
+  /* ── The Pipeline Lab design system: deep violet + lavender + lime ── */
+  --color-violet-950: #0e0518;
+  --color-violet-900: #1b0a44;
+  --color-violet-800: #2a0d80;
+  --color-violet-600: #3c13b2;
+  --color-violet-500: #5527d6;
+  --color-violet-300: #ceb3ff;
+  --color-violet-100: #e9ddff;
+  --color-violet-50: #f4eeff;
+
+  --color-lime-400: #c9fc36;
+  --color-lime-500: #b2e62b;
+  --color-amber-400: #fbbf24;
+
+  --color-ink-900: #14101d;
+  --color-ink-700: #4f4a5c;
+  --color-ink-500: #7a7a7a;
+
+  --color-paper: #ffffff;
+  --color-paper-soft: #f8f5ff;
+  --color-line: #e6def6;
+  --color-line-dark: rgba(206, 179, 255, 0.18);
+
+  --font-sans: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html {
+  scroll-behavior: initial;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink-900);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--color-lime-400);
+  color: var(--color-violet-900);
+}
+
+/* Editorial display style */
+.display {
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 1.04;
+}
+
+.display .accent {
+  color: var(--color-lime-400);
+  font-style: italic;
+  font-weight: 400;
+}
+
+.display .accent-violet {
+  color: var(--color-violet-600);
+  font-style: italic;
+  font-weight: 400;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+/* Line-mask reveal used by hero / section headings */
+.line-mask {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.1em;
+  margin-bottom: -0.1em;
+}
+
+.line-mask > span {
+  display: block;
+  will-change: transform;
+}
+
+/* Marquee */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee var(--marquee-duration, 36s) linear infinite;
+}
+
+.marquee-track.reverse {
+  animation-direction: reverse;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation-play-state: paused;
+  }
+}
+
+/* Thin violet scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-violet-50);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-violet-300);
+  border-radius: 8px;
+}
