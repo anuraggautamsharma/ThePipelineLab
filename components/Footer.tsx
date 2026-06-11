@@ -50,14 +50,6 @@ export default function Footer() {
                   </a>
                 </li>
                 <li>
-                  <Link
-                    href="/get-in-touch"
-                    className="text-sm text-ink-soft transition-colors hover:text-violet-600"
-                  >
-                    Get in touch
-                  </Link>
-                </li>
-                <li>
                   <a
                     href="mailto:hello@thepipelinelab.com"
                     className="text-sm text-ink-soft transition-colors hover:text-violet-600"

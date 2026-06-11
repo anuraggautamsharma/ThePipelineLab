@@ -70,28 +70,6 @@ body {
   font-weight: 400;
 }
 
-/* lime marker highlight, drawn under a key word */
-.marker {
-  position: relative;
-  white-space: nowrap;
-}
-
-.marker > .marker-ink {
-  position: relative;
-  z-index: 1;
-}
-
-.marker > .marker-swash {
-  position: absolute;
-  left: -0.06em;
-  right: -0.06em;
-  bottom: 0.04em;
-  height: 0.34em;
-  background: var(--color-lime-400);
-  transform-origin: left center;
-  z-index: 0;
-}
-
 .eyebrow {
   font-family: var(--font-mono);
   font-size: 0.68rem;

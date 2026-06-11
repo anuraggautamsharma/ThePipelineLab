@@ -24,17 +24,6 @@ export default function CTA() {
           scrollTrigger: { trigger: ref.current, start: "top 70%" },
         }
       );
-      gsap.fromTo(
-        ".cta-swash",
-        { scaleX: 0 },
-        {
-          scaleX: 1,
-          duration: 0.7,
-          ease: "power3.out",
-          delay: 0.8,
-          scrollTrigger: { trigger: ref.current, start: "top 70%" },
-        }
-      );
     }, ref);
     return () => ctx.revert();
   }, []);
@@ -60,10 +49,7 @@ export default function CTA() {
           </span>
           <span className="line-mask cta-line">
             <span>
-              <span className="marker">
-                <span className="marker-swash cta-swash" aria-hidden />
-                <span className="marker-ink accent">Own the system.</span>
-              </span>
+              <span className="accent">Own the system.</span>
             </span>
           </span>
         </h2>

@@ -17,7 +17,6 @@ consulting, cybersecurity.
 - [Home](https://thepipelinelab.com/): Services, process, results and stack
 - [Case Studies](https://thepipelinelab.com/case-studies): Client outcomes incl. $15M aerospace contracts, $50M AUM, 80 hospital partnerships
 - [Blog](https://thepipelinelab.com/blog): Guides on cold email deliverability, Clay TAM building, and GTM engineering
-- [Get in Touch](https://thepipelinelab.com/get-in-touch): Inquiry form and strategy call booking
 
 ## Contact
 
