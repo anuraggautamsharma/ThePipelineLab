@@ -2,6 +2,10 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import { GeistMono } from "geist/font/mono";
 import "./globals.css";
+import SmoothScroll from "@/components/SmoothScroll";
+import Cursor from "@/components/Cursor";
+import Nav from "@/components/Nav";
+import Footer from "@/components/Footer";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -28,7 +32,14 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${poppins.variable} ${GeistMono.variable}`}>
-      <body>{children}</body>
+      <body>
+        <SmoothScroll>
+          <Cursor />
+          <Nav />
+          {children}
+          <Footer />
+        </SmoothScroll>
+      </body>
     </html>
   );
 }

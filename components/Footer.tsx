@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { CALENDLY_URL, FOOTER_TAGLINE, NAV_LINKS } from "@/lib/data";
 
 export default function Footer() {
@@ -6,14 +7,14 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl">
         <div className="flex flex-col justify-between gap-12 md:flex-row">
           <div className="max-w-sm">
-            <a href="#top" className="flex items-center gap-2 text-white">
+            <Link href="/" className="flex items-center gap-2 text-white">
               <span className="grid h-9 w-9 place-items-center rounded-lg bg-lime-400 font-mono text-base font-bold text-violet-950">
                 P
               </span>
               <span className="font-semibold tracking-tight">
                 The Pipeline Lab<span className="text-lime-400">.</span>
               </span>
-            </a>
+            </Link>
             <p className="mt-5 text-sm leading-relaxed text-violet-100/60">
               {FOOTER_TAGLINE}
             </p>
@@ -25,12 +26,12 @@ export default function Footer() {
               <ul className="space-y-3">
                 {NAV_LINKS.map((l) => (
                   <li key={l.href}>
-                    <a
+                    <Link
                       href={l.href}
                       className="text-sm text-violet-100/75 transition-colors hover:text-lime-400"
                     >
                       {l.label}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -47,6 +48,14 @@ export default function Footer() {
                   >
                     Book a call
                   </a>
+                </li>
+                <li>
+                  <Link
+                    href="/get-in-touch"
+                    className="text-sm text-violet-100/75 transition-colors hover:text-lime-400"
+                  >
+                    Get in touch
+                  </Link>
                 </li>
                 <li>
                   <a

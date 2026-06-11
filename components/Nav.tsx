@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useScroll } from "framer-motion";
+import Link from "next/link";
 import { CALENDLY_URL, NAV_LINKS } from "@/lib/data";
 import Magnetic from "./Magnetic";
 
@@ -30,25 +31,25 @@ export default function Nav() {
       }`}
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 md:px-8">
-        <a href="#top" className="flex items-center gap-2 text-white">
+        <Link href="/" className="flex items-center gap-2 text-white">
           <span className="grid h-8 w-8 place-items-center rounded-lg bg-lime-400 font-mono text-sm font-bold text-violet-950">
             P
           </span>
           <span className="text-sm font-semibold tracking-tight">
             The Pipeline Lab<span className="text-lime-400">.</span>
           </span>
-        </a>
+        </Link>
 
         <ul className="hidden items-center gap-7 md:flex">
           {NAV_LINKS.map((l) => (
             <li key={l.href}>
-              <a
+              <Link
                 href={l.href}
                 className="group relative text-[13px] font-medium text-violet-100/80 transition-colors hover:text-white"
               >
                 {l.label}
                 <span className="absolute -bottom-1 left-0 h-px w-0 bg-lime-400 transition-all duration-300 group-hover:w-full" />
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
@@ -95,13 +96,13 @@ export default function Nav() {
             <ul className="flex flex-col gap-1 px-5 py-6">
               {NAV_LINKS.map((l) => (
                 <li key={l.href}>
-                  <a
+                  <Link
                     href={l.href}
                     onClick={() => setOpen(false)}
                     className="block py-2 text-lg font-medium text-violet-100"
                   >
                     {l.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
               <li className="pt-3">

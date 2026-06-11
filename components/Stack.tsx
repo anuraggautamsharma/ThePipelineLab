@@ -1,4 +1,5 @@
-import { STACK } from "@/lib/data";
+import Image from "next/image";
+import { STACK_ROWS } from "@/lib/data";
 
 export default function Stack() {
   return (
@@ -22,7 +23,7 @@ export default function Stack() {
             "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
         }}
       >
-        {STACK.map((row, r) => (
+        {STACK_ROWS.map((row, r) => (
           <div
             key={r}
             className={`marquee-track ${r % 2 ? "reverse" : ""}`}
@@ -33,8 +34,15 @@ export default function Stack() {
                 key={i}
                 className="mx-3 inline-flex items-center gap-3 whitespace-nowrap rounded-full border border-line bg-violet-50 px-6 py-3.5 text-sm font-semibold text-violet-600 transition-colors hover:border-violet-300"
               >
-                <span className="h-2 w-2 rounded-full bg-lime-500" aria-hidden />
-                {tool}
+                <Image
+                  src={tool.logo}
+                  alt={`${tool.name} logo`}
+                  width={22}
+                  height={22}
+                  className="h-[22px] w-[22px] rounded-[5px] object-contain"
+                  unoptimized
+                />
+                {tool.name}
               </span>
             ))}
           </div>

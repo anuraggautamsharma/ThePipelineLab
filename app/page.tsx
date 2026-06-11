@@ -1,7 +1,4 @@
-import SmoothScroll from "@/components/SmoothScroll";
-import Cursor from "@/components/Cursor";
 import Preloader from "@/components/Preloader";
-import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
 import LogoMarquee from "@/components/LogoMarquee";
 import Manifesto from "@/components/Manifesto";
@@ -12,14 +9,11 @@ import Stack from "@/components/Stack";
 import Testimonials from "@/components/Testimonials";
 import FAQ from "@/components/FAQ";
 import CTA from "@/components/CTA";
-import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <SmoothScroll>
+    <>
       <Preloader />
-      <Cursor />
-      <Nav />
       <main>
         <Hero />
         <LogoMarquee />
@@ -32,7 +26,6 @@ export default function Home() {
         <FAQ />
         <CTA />
       </main>
-      <Footer />
-    </SmoothScroll>
+    </>
   );
 }
